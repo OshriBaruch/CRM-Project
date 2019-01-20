@@ -1,0 +1,44 @@
+#actions{
+    padding-left: 3%;
+    }
+  .client-actions{
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    width: 55%;
+    margin-bottom: 1% ;
+    align-items: center;
+  }
+  .client-actions>span{
+    margin-left: 10%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .client-actions>input{
+    margin-right: 10%;
+    justify-self: center;
+    align-self: center;
+  }
+  .declare{
+    display: grid;
+    width: 55%;
+    font-size: 110%;
+    grid-template-columns: 1fr 1fr;
+  }
+  .add-client{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    width: 60%;
+    margin-bottom: 1% ;
+  }
+  .add-client>span{
+    padding-left: 10%;
+    justify-self: start;
+    align-self: center;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+  }
+  .add-client>input{
+    margin-right: 10%;
+    justify-self: center;
+    align-self: center;
+  }

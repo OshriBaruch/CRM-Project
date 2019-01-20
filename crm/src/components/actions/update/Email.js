@@ -1,0 +1,43 @@
+import React, { Component } from 'react';
+import ReactDatalist from 'react-datalist'
+
+class Owner extends Component {
+    state = {
+        letters: this.generateLetters(),
+        correntLetter: ""
+    }
+    generateLetters() {
+        let letterStatus = []
+        for (let i = 65; i < 91; i++) { letterStatus.push(String.fromCharCode(i)) }
+        return letterStatus
+    }
+    setCurrentEmailType = (e) => {
+        let letter = e
+        this.props.getCorrntEmailType(letter)
+        this.setState({
+            correntLetter: e
+        })
+    }
+    resetLetter = () => {
+        this.setState({
+            correntLetter: ""
+        })
+    }
+    sendUpdataData = () => this.props.sendUpdataData()
+
+    render() {
+        return (
+            <div className="client-actions"> Send Email :
+                {this.state.correntLetter ?
+                    <span><span>{this.state.correntLetter}</span><button onClick={this.resetLetter}>back</button></span> :
+                    <ReactDatalist list="email-types"
+                        onOptionSelected={this.setCurrentEmailType}
+                        options={this.state.letters.map(letter => letter)} />
+                }
+                <span onClick={this.sendUpdataData} style={this.props.style}>SEND</span>
+            </div>
+        )
+    }
+
+}
+export default Owner

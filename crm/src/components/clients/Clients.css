@@ -1,0 +1,97 @@
+
+.rows-header{
+    background-color: rgb(252, 224, 65);
+    text-shadow: -1px -1px 0 #ecf0f1, 1px -1px 0 #ecf0f1,  1px 1px 0 #ecf0f1;
+    font-size: 150%;
+    display: grid;
+    grid-template-columns: repeat(7,1fr);
+    align-content: center;
+    justify-content: start;
+    cursor: pointer;
+    padding: 0.2%;
+  }
+  
+  .rows-header > span {
+    justify-self: center;
+    align-self: center;
+  }
+  .client-row {
+    display: grid;
+    grid-template-columns: repeat(7,1fr);
+    align-content: center;
+    justify-content: start;
+    cursor: pointer;
+    padding: 0.2%;
+  }
+  
+  .client-row > span {
+    justify-self: center;
+    align-self: center;
+  }
+  
+  .client-row:hover { background-color: rgb(230, 227, 223); }
+  .client-row:active {
+    background-color: rgb(202, 196, 188);
+    box-shadow: 1px -1px 1px rgb(179, 176, 163);
+  }
+  #clients-menu{
+    margin: 1%;
+    border: 1px solid rgb(31, 27, 27);
+  }
+  .client-input{
+      margin: 1%;
+      display: grid;
+      grid-template-columns: 2fr 1fr 12fr 1fr 1fr
+  }
+  .client-input>span{
+    justify-self: end
+  }
+  
+  
+  /* The Close Button */
+  #popup-close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    justify-self: end;
+  }
+  #popup-close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  #popup-container {
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    right: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0,0,0,0.4);
+    display: grid;
+    justify-content: center;
+    align-content: center;
+  }
+  #popup-content {
+    background-color: #292828;
+    padding: 5%;
+    color: rgb(202, 196, 188);
+    display: grid;
+    border-radius: 5%;
+    grid-template-rows: repeat(6, 1fr);
+  }
+  #popup-content>div{
+    display: grid;
+    grid-template-columns: 3fr 5fr;
+    /* justify-content: center; */
+    align-content: center;
+  }
+  .popup-titel{
+    display: grid;
+    grid-template-columns: 4fr 1fr !important;
+    justify-content: center;
+    align-content: center;
+  }
+  
