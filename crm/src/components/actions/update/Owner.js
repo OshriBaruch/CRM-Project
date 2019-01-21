@@ -28,7 +28,7 @@ class Owner extends Component {
                         onOptionSelected={this.setCurrentOwner}
                         options={this.props.data.map((d, index) => { return `${d.owner} ${index}` })} />
                 }
-                <span onClick={this.sendUpdataData} style={this.props.style}>TRANSFER</span>
+                <h4 onClick={this.sendUpdataData} style={this.props.style}>TRANSFER</h4>
             </div>
         )
     }

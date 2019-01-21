@@ -34,7 +34,7 @@ class Owner extends Component {
                         onOptionSelected={this.setCurrentEmailType}
                         options={this.state.letters.map(letter => letter)} />
                 }
-                <span onClick={this.sendUpdataData} style={this.props.style}>SEND</span>
+                <h4 onClick={this.sendUpdataData} style={this.props.style}>SEND</h4>
             </div>
         )
     }

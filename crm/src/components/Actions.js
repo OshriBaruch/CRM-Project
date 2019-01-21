@@ -12,6 +12,7 @@ class Actions extends Component {
   async componentDidMount() {
     const data = await axios.get('http://localhost:1996/allClient')
     this.setState({ data: data.data })
+    this.props.getCorrntPage("Actions")
   }
   saveClientChangeToDB = async (client) => {
     let data = await axios.put('http://localhost:1996/client', client)
@@ -33,10 +34,12 @@ class Actions extends Component {
     return data.data
   }
   render() {
-    return <div id="actions">
-      {this.state.data.length > 0 ? <Update data={this.state.data} sendUpdataData={this.sendUpdataData} /> : null}
-      {this.state.data.length > 0 ? <AddClient saveNewClient={this.saveNewClient} /> : null}
-    </div>
+    return (
+      <div id="actions">
+        {this.state.data.length > 0 ? <Update data={this.state.data} sendUpdataData={this.sendUpdataData} /> : null}
+        {this.state.data.length > 0 ? <AddClient saveNewClient={this.saveNewClient} /> : null}
+      </div>
+    )
   }
 }
 

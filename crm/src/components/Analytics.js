@@ -15,6 +15,7 @@ class Analytics extends Component {
   async componentDidMount() {
     const analytics = await axios.get('http://localhost:1996/analytics')
     this.setState({ badges: analytics.data.badges, recharts: analytics.data.recharts })
+    this.props.getCorrntPage("Analytics")
   }
   render() {
     return <div id="analytics">

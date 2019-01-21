@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { LineChart, XAxis, YAxis, Tooltip, CartesianGrid, Legend, Line } from 'recharts';
+import { LineChart, XAxis, YAxis, Tooltip, CartesianGrid, Line } from 'recharts';
 
 class SalesSince extends Component {
 
@@ -12,7 +12,6 @@ class SalesSince extends Component {
                 <XAxis dataKey="key" />
                 <YAxis />
                 <Tooltip />
-                <Legend />
                 <Line type="monotone" dataKey="value" stroke="#82ca9d" />
             </LineChart>
         )

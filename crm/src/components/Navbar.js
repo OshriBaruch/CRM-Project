@@ -1,29 +1,25 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 class Navbar extends Component {
-    constructor() {
-        super();
-        this.state = { background1: null, background2: null, background3: null }
+    getCorrntColor = (val, corrntPage) => {
+        
+        let obj1 = { background: "#FFD447" }
+        let obj2 = { background: "#423E37" }
+
+        if (corrntPage === val) { return obj1 }
+        else { return obj2 }
     }
-    onCorrectPage = (e) => {
-        let name = e.target.name
-        let state = this.state
-        let obj = { background: "rgb(252, 224, 65)" }
-
-        state.background1 = null
-        state.background2 = null
-        state.background3 = null
-
-        state[name] = obj
-        this.setState(state)
-    }
-
     render() {
-        return <div id="main-links">
-            <Link to="/clients" onClick={this.onCorrectPage} name={"background1"} style={this.state.background1}>Clients</Link>
-            <Link to="/actions" onClick={this.onCorrectPage} name={"background2"} style={this.state.background2} >Actions</Link>
-            <Link to="/analytics" onClick={this.onCorrectPage} name={"background3"} style={this.state.background3} >Analytics</Link>
-        </div>
+        let corrntPage = this.props.corrntPage
+        return (
+            <div id="navbar">
+                <div id="main-links">
+                    <Link to="/clients" style={this.getCorrntColor(corrntPage, 'Clients')}><span>Clients</span></Link>
+                    <Link to="/actions" style={this.getCorrntColor(corrntPage, 'Actions')}><span>Actions</span></Link>
+                    <Link to="/analytics" style={this.getCorrntColor(corrntPage, 'Analytics')}><span>Analytics</span></Link>
+                </div>
+            </div>
+        )
     }
 }
 

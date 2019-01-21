@@ -4,19 +4,15 @@ import moment from 'moment'
 class AddClient extends Component {
   constructor() {
     super()
-    this.state = {
-      name: "",
-      surname: "",
-      email: "",
-      country: "",
-      owner: "",
-    }
+    this.state = { name: "", surname: "", email: "", country: "", owner: "" }
   }
+
   handleInputChange = (e) => {
     const value = e.target.value;
     const name = e.target.name;
     this.setState({ [name]: value });
   }
+
   saveNewClient = async () => {
     let newClient = {
       name: this.state.name,
@@ -26,19 +22,16 @@ class AddClient extends Component {
       firstContact: moment().format(),
       owner: this.state.owner,
       emailType: null,
-      sold: false,
+      sold: false
     }
     await this.props.saveNewClient(newClient)
-    let emptystate = {
-      name: "",
-      surname: "",
-      email: "",
-      country: "",
-      owner: "",
-    }
+
+    let emptystate = {name: "", surname: "", email: "", country: "", owner: "" }
     alert("New Client Saved!")
+
     this.setState(emptystate);
   }
+
   render() {
     let state = this.state
     return <div id="add-client">
@@ -59,8 +52,6 @@ class AddClient extends Component {
         <input type="text" value={state.owner} name="owner" onChange={this.handleInputChange} />
       </div>
       <button className="sendNewComplain" onClick={this.saveNewClient}>Submit</button>
-
-
     </div>
   }
 }

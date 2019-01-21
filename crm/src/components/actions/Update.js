@@ -45,22 +45,24 @@ class Update extends Component {
 
   render() {
     let correntClient = this.state.correntClient
-    return <div className="updata client">
-      {correntClient ?
-        <div>
-          <h2>{`What's up ${correntClient.name} ${correntClient.surname}`}</h2>
-          < Owner getCorrntOwner={this.getCorrntOwner} sendUpdataData={this.sendUpdataData} style={this.state.style} data={this.props.data} />
-          < Email getCorrntEmailType={this.getCorrntEmailType} sendUpdataData={this.sendUpdataData} style={this.state.style} />
-          <h5 className="declare"><span>Declare sele!</span><span onClick={this.getCorrntSele} style={this.state.style}>DECLERE</span></h5>
-        </div> : null
-      }
-      {!correntClient ?
-        <div>
-          <h2>Uppdate : First Find your name</h2>
-          < Client getCorrntId={this.getCorrntId} style={this.state.style} data={this.props.data} />
-        </div> : null
-      }
-    </div>
+    return (
+      <div className="updata-client">
+        {correntClient ? (
+          <div className="updata-client-box">
+            <h3>{`Hi ${correntClient.name} ${correntClient.surname} ,What would you like to change ?`}</h3>
+            < Owner getCorrntOwner={this.getCorrntOwner} sendUpdataData={this.sendUpdataData} style={this.state.style} data={this.props.data} />
+            < Email getCorrntEmailType={this.getCorrntEmailType} sendUpdataData={this.sendUpdataData} style={this.state.style} />
+            <div className="client-actions"><span>Declare sele!</span><h4 id="declare" onClick={this.getCorrntSele} style={this.state.style}>DECLERE - But only if you're 100%sure</h4></div>
+          </div>
+        ) : null }
+        {!correntClient ? (
+          <div className="updata-first-box">
+            <h2>Select a name and start updating</h2>
+            < Client getCorrntId={this.getCorrntId} style={this.state.style} data={this.props.data} />
+          </div>
+        ) : null }
+      </div>
+    )
   }
 }
 

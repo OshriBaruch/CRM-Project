@@ -1,44 +1,98 @@
 #actions{
-    padding-left: 3%;
-    }
-  .client-actions{
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
-    width: 55%;
-    margin-bottom: 1% ;
-    align-items: center;
+  padding-left: 3%;
+  width: 600px;
+  height: 100vh; 
   }
-  .client-actions>span{
-    margin-left: 10%;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-  }
-  .client-actions>input{
-    margin-right: 10%;
-    justify-self: center;
-    align-self: center;
-  }
-  .declare{
-    display: grid;
-    width: 55%;
-    font-size: 110%;
-    grid-template-columns: 1fr 1fr;
-  }
-  .add-client{
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    width: 60%;
-    margin-bottom: 1% ;
-  }
-  .add-client>span{
-    padding-left: 10%;
-    justify-self: start;
-    align-self: center;
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-  }
-  .add-client>input{
-    margin-right: 10%;
-    justify-self: center;
-    align-self: center;
-  }
+.updata-client{
+  width: 100;
+  height: 35%;
+  padding: 3%;
+}
+.updata-client-box{
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  align-items: top;
+  justify-content: start;
+}
+.client-actions{
+  display: grid;
+  grid-template-columns: 3fr 3fr 1fr;
+  grid-column-gap: 2vw;
+  width: 100%;
+  align-items: center;
+}
+.client-actions>span{
+  display: inline-block;
+  color: #423E37 !important;
+  padding: 1%;
+}
+.client-actions>span>button{
+  margin-left: 20%;
+}
+.client-actions>h4{
+  display: grid;
+  justify-items: center;
+  justify-content: center;  
+  color: #423E37 !important;
+  padding: 1%;
+  border-radius: 5%;
+  background-color: #FFD447
+}
+.client-actions>h4:hover { 
+  cursor: pointer;
+  background-color: #F6FEDB ; 
+}
+
+.updata-first-box{
+  display: grid;
+  grid-template-rows: 2fr 1fr;
+  align-items: center;
+}
+.updata-first-box>div{
+  justify-self: start;
+  margin-left: 20%;
+  align-self: center;
+}
+
+#declare{
+  grid-column: 2 / 4;
+}
+#add-client{
+  display: grid;
+  grid-template-rows: repeat(6,1fr);
+  justify-content: start;
+  height: 35%;
+  padding: 3%;
+}
+.add-client{
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  justify-content: start;
+}
+.add-client>span{
+  padding-left: 10%;
+  justify-self: start;
+  align-self: center;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+}
+.add-client>input{
+  margin-right: 10%;
+  justify-self: center;
+  align-self: center;
+}
+.add-client>h2{
+  padding-left: 10%;
+  justify-self: center;
+  align-self: center;
+}
+.sendNewComplain{
+  width: 20%;
+  height: 130%;
+  background-color: #FFD447;
+  border: 50% #423E37;
+  cursor: pointer;
+  color: #423E37;
+  justify-self: end;
+  align-self: center;
+}

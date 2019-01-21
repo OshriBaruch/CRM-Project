@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Pie, PieChart, Cell, labelLine, outerRadius, Tooltip, label, Sector } from 'recharts';
+import { Pie, PieChart, Cell, Sector } from 'recharts';
 
 const renderActiveShape = (props) => {
     const RADIAN = Math.PI / 180;
@@ -64,6 +64,7 @@ class Acquisitions extends Component {
     }
     render() {
         let clientAcquisitions = this.props.clientAcquisitions
+		console.log("​Acquisitions -> render -> clientAcquisitions", clientAcquisitions)
         let colors = ["#8884d8", "#82ca9d", "#ff7300"]
         let i = 0
         return (
@@ -73,14 +74,15 @@ class Acquisitions extends Component {
                     activeShape={renderActiveShape}
                     data={clientAcquisitions}
                     cx="50%" cy="50%"
+                    // dataKey={}
                     outerRadius={90}
                     onMouseEnter={this.onPieEnter}
                 />
                 {
-                    clientAcquisitions.map((entry, index) => <Cell key={clientAcquisitions[i]} fill={colors[i++]} />)
+                    clientAcquisitions.map((index) => <Cell dataKey="value" nameKey="key" key={index}  fill={colors[index]} />)
                 }
             </PieChart>
         );
     }
 }
-export default Acquisitions
+export default Acquisitions//key={clientAcquisitions[i]}

@@ -1,5 +1,12 @@
 #CRM-main {
-  /* text-align: center; */
+  justify-self: center;
+  align-self: center;
+  display: grid;
+}
+#CRM-main>div {
+  align-items: center;
+  display: grid;
+  padding: 0.3%;
 }
 
 a {
@@ -8,20 +15,34 @@ a {
   padding-left: 5%;
   padding-right: 5%;
 }
-a:hover {
-  color: grey
-  
-}
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 40vmin;
 }
 
-#main-links {
-  background-color: black;
+/* Clients Page */
+#navbar {
+  height: 7vh;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 17fr;
-  align-content: center;
-  justify-content: start;
-  /* text-shadow: -1px -1px 0 #ecf0f1, 1px -1px 0 #ecf0f1,  1px 1px 0 #ecf0f1; */
+  background-color: #423E37;
+}
+
+#main-links {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  height:  7vh;
+  width: 15vw;
 } 
+
+#main-links > a {
+  width: 100%;
+  height:  100%;
+  display: grid;
+  align-items: center;
+  justify-items: center;
+}
+
+#main-links > a:hover {
+  background-color: #FFD447;
+  /* height:  7vh */
+}

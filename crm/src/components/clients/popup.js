@@ -13,21 +13,20 @@ class Popup extends Component {
     this.setState({ [name]: value });
   }
 
-  changeData = () => this.props.changeData(this.state)
+  savePopupChange = () => this.props.savePopupChange(this.state)
 
   render() {
     let client = this.props.client
 
     return (
       <div id="popup-container">
-
         <div id="popup-content">
-          <div className="popup-titel"><h3>Updata Client Data</h3><span id="popup-close" onClick={this.props.closePop} >&times;</span></div>
+          <div className="popup-titel"><h3>Updata Client Data</h3><span id="popup-close" onClick={this.props.closePopUp} >&times;</span></div>
           <div><span>Name : </span><input type="text" value={this.state.name ? this.state.name : client.name} name="name" onChange={this.handleInputChange} /></div>
           <div><span>Sername : </span><input type="text" value={this.state.surname ? this.state.surname : client.surname} name="surname" onChange={this.handleInputChange} /></div>
           <div><span>Email : </span><input type="text" value={this.state.email ? this.state.email : client.email} name="email" onChange={this.handleInputChange} /></div>
           <div><span>Country :</span> <input type="text" value={this.state.country ? this.state.country : client.country} name="country" onChange={this.handleInputChange} /></div>
-          <div className="far fa-share-square" onClick={this.changeData}></div>
+          <div><span className="far fa-share-square" onClick={this.savePopupChange} ></span></div>
         </div>
       </div>
     )
