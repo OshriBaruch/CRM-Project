@@ -16,14 +16,13 @@ class Recharts extends Component {
     }
     render() {
         let recharts = this.props.recharts
-		console.log("​Recharts -> render -> recharts", recharts)
         let fild = this.state.fild
 
         return <div className="recharts-analytics">
             <TopEmployees topEmployees={recharts.topEmployees} />
             <SalesBy salesBy={recharts.salesBy} fild={fild} filterBy={this.filterBy} />
-            <Acquisitions clientAcquisitions={recharts.clientAcquisitions} />
             <SalesSince salesSince={recharts.salesSince} />
+            <Acquisitions clientAcquisitions={recharts.clientAcquisitions} />
         </div>
     }
 }

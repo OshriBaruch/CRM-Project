@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Pie, PieChart, Cell, Sector } from 'recharts';
+import { Pie, PieChart, Cell, Sector, ResponsiveContainer } from 'recharts';
 
 const renderActiveShape = (props) => {
     const RADIAN = Math.PI / 180;
@@ -12,6 +12,7 @@ const renderActiveShape = (props) => {
     const my = cy + (outerRadius + 30) * sin;
     const ex = mx + (cos >= 0 ? 1 : -1) * 22;
     const ey = my;
+    const option = ["Last Month", "6-12 Months", "12+ Months"]
     const textAnchor = cos >= 0 ? 'start' : 'end';
 
     return (
@@ -24,7 +25,7 @@ const renderActiveShape = (props) => {
                 outerRadius={outerRadius}
                 startAngle={startAngle}
                 endAngle={endAngle}
-                fill={"blue"}
+                fill={"#FFD447"}
                 dataKey="value" nameKey="key"
             />
             <Sector
@@ -34,14 +35,14 @@ const renderActiveShape = (props) => {
                 endAngle={endAngle}
                 innerRadius={outerRadius + 6}
                 outerRadius={outerRadius + 10}
-                fill={"red"}
+                fill={"#423E37"}
                 dataKey="value" nameKey="key"
             />
             <path d={`M${sx},${sy}L${mx},${my}L${ex},${ey}`} stroke={"#82ca9d"} fill="#none" />
             <circle cx={ex} cy={ey} r={2} fill={"#82ca9d"} stroke="none" />
-            <text x={ex + (cos >= 0 ? 1 : -1) * 12} y={ey} textAnchor={textAnchor} fill="#333">{`PV ${value}`}</text>
+            <text x={ex + (cos >= 0 ? 1 : -1) * 12} y={ey} textAnchor={textAnchor} fill="#333">{`${option[props.name]} ${value}`}</text>
             <text x={ex + (cos >= 0 ? 1 : -1) * 12} y={ey} dy={18} textAnchor={textAnchor} fill="#999">
-                {`(Rate ${(percent * 100).toFixed(2)}%)`}
+                {`${(percent * 100).toFixed(2)}%`}
             </text>
         </g>
     );
@@ -52,11 +53,6 @@ class Acquisitions extends Component {
         super();
         this.state = {}
     }
-    getInitialState() {
-        return {
-            activeIndex: 0,
-        };
-    }
     onPieEnter = (data, index) => {
         this.setState({
             activeIndex: index,
@@ -64,24 +60,27 @@ class Acquisitions extends Component {
     }
     render() {
         let clientAcquisitions = this.props.clientAcquisitions
-		console.log("​Acquisitions -> render -> clientAcquisitions", clientAcquisitions)
-        let colors = ["#8884d8", "#82ca9d", "#ff7300"]
-        let i = 0
+        let colors = ["#8884d8", "#82ca9d", "#FFD447"]//#FFD447
         return (
-            <PieChart width={500} height={200}>
-                <Pie
-                    activeIndex={this.state.activeIndex}
-                    activeShape={renderActiveShape}
-                    data={clientAcquisitions}
-                    cx="50%" cy="50%"
-                    // dataKey={}
-                    outerRadius={90}
-                    onMouseEnter={this.onPieEnter}
-                />
-                {
-                    clientAcquisitions.map((index) => <Cell dataKey="value" nameKey="key" key={index}  fill={colors[index]} />)
-                }
-            </PieChart>
+            <div className="Acquisitions">
+                <div className="Acquisitions-title">Acquisitions</div>
+                <ResponsiveContainer width="100%" height="100%">
+                    <PieChart>
+                        <Pie
+                            activeIndex={this.state.activeIndex}
+                            activeShape={renderActiveShape}
+                            data={clientAcquisitions}
+                            cx="50%" cy="50%"
+                            dataKey={"value"}
+                            outerRadius={"80%"}
+                            onMouseEnter={this.onPieEnter}
+                        />
+                        {
+                            clientAcquisitions.map((index) => <Cell dataKey="value" nameKey="key" key={index} fill={colors[index]} />)
+                        }
+                    </PieChart>
+                </ResponsiveContainer>
+            </div>
         );
     }
 }

@@ -8,7 +8,6 @@ import HottestCountry from './badges/HottestCountry'
 class Badges extends Component {
     render() {
         let badges = this.props.badges
-		// console.log("​Badges -> render -> badges", badges)
         return <div className="badges-analytics">
             <NewClients newClients={badges.NewClients}/>
             <EmailSent emailSent={badges.EmailSent}/>
