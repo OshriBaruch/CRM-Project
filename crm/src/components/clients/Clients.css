@@ -1,4 +1,3 @@
-
 .rows-header{
   background-color: #FFD447;
   box-shadow: 0.4vw 0.4vh rgb(213, 211, 206);
@@ -86,7 +85,7 @@
 }
 #popup-content {
   background-color: #423E37;
-  padding: 5%;
+  padding: 4%;
   color: rgb(202, 196, 188);
   display: grid;
   border-radius: 5%;

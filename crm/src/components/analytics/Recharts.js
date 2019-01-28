@@ -18,12 +18,14 @@ class Recharts extends Component {
         let recharts = this.props.recharts
         let fild = this.state.fild
 
-        return <div className="recharts-analytics">
-            <TopEmployees topEmployees={recharts.topEmployees} />
-            <SalesBy salesBy={recharts.salesBy} fild={fild} filterBy={this.filterBy} />
-            <SalesSince salesSince={recharts.salesSince} />
-            <Acquisitions clientAcquisitions={recharts.clientAcquisitions} />
-        </div>
+        return (
+            <div className="recharts-analytics">
+                <TopEmployees topEmployees={recharts.topEmployees} />
+                <SalesBy salesBy={recharts.salesBy} fild={fild} filterBy={this.filterBy} />
+                <SalesSince salesSince={recharts.salesSince} />
+                <Acquisitions clientAcquisitions={recharts.clientAcquisitions} />
+            </div>
+        )
     }
 }
 

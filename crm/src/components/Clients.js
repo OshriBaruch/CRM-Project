@@ -7,6 +7,7 @@ import InputComp from './clients/InputComp'
 import './clients/Clients.css';
 
 class Clients extends Component {
+    // remove filterData from state. remember that the state should hold the minimal necessary data.
     constructor() {
         super();
         this.state = {
@@ -37,6 +38,7 @@ class Clients extends Component {
             return fild.includes(input)
         })
         this.setState({ filterData: filterData, correntPage: 0 });
+        // return filterData
     }
     filterByUserFild = (change) => {
         let filterClients = this.state.filterClients
@@ -44,9 +46,11 @@ class Clients extends Component {
         this.setState({ filterClients: filterClients });
         this.filterByUserInput()
     }
+
+    // consider creating one function for both - pagination 
     moveToNextPage = () => {
         let corrent = this.state.correntPage
-        let dataLangth = this.state.data.length
+        let dataLangth = this.state.filterData.length
         if ((corrent * 20) + 20 <= dataLangth) { corrent++ }
         this.setState({ correntPage: corrent })
     }
@@ -55,12 +59,15 @@ class Clients extends Component {
         if ((corrent * 20) - 20 >= 0) { corrent-- }
         this.setState({ correntPage: corrent })
     }
+    // No need for both obj and index, pass only index/id
     setClientChange = (obj, index) => {
         obj.index = index
         this.setState({ changeContact: obj })
     }
     savePopupChange = (obj) => {
         let changeContact = this.state.changeContact
+        // check if necessary (maybe you should put null here)
+        // obj = updateObjectValues(obj);
         obj.name ? changeContact.name = obj.name : obj.name = changeContact.name
         obj.surname ? changeContact.surname = obj.surname : obj.surname = changeContact.surname
         obj.email ? changeContact.email = obj.email : obj.email = changeContact.email
@@ -74,11 +81,12 @@ class Clients extends Component {
             alert("Not Found Data")
         }
     }
-
-    closePopUp = () => this.setState({ changeContact: null })
-
+    closePopUp = () => {
+        this.setState({ changeContact: null })
+    }
     render() {
         let clients = this.state.filterData
+        // let filteredClients = this.filterData()
         clients = clients.slice(this.state.correntPage * 20, (this.state.correntPage + 1) * 20)
         return (
             <div id="CRM-main">
@@ -88,11 +96,15 @@ class Clients extends Component {
                     correntPage={this.state.correntPage}
                     dataLength={this.state.filterData.length / 20}
                     filters={this.state.filterClients} />
-                <div id="clients-menu">
+                <div id="clients-table">
                     <TableHeader />
-                    {clients.map((c, index) => <Row key={index} index={index} setClientChange={this.setClientChange} client={c} />)}
+                    {clients.map((c, index) =>
+                        <Row key={index} index={index} setClientChange={this.setClientChange} client={c} />
+                    )}
                 </div>
-                {this.state.changeContact ? < Popup closePopUp={this.closePopUp} client={this.state.changeContact} savePopupChange={this.savePopupChange} /> : null}
+                {this.state.changeContact &&
+                    <Popup closePopUp={this.closePopUp} client={this.state.changeContact} savePopupChange={this.savePopupChange} />
+                }
             </div>
         )
     }

@@ -40,10 +40,10 @@ class AddClient extends Component {
         <input type="text" value={state.name} name="name" onChange={this.handleInputChange} />
       </div>
       <div className="add-client"><span>Surname :</span>
-        <input type="text" value={state.email} name="surname" onChange={this.handleInputChange} />
+        <input type="text" value={state.surname} name="surname" onChange={this.handleInputChange} />
       </div>
       <div className="add-client"><span>Send Email :</span>
-        <input type="email" value={state.surname} name="email" onChange={this.handleInputChange} />
+        <input type="email" value={state.email} name="email" onChange={this.handleInputChange} />
       </div>
       <div className="add-client"><span>Country :</span>
         <input type="text" value={state.country} name="country" onChange={this.handleInputChange} />

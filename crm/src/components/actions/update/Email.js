@@ -2,9 +2,12 @@ import React, { Component } from 'react';
 import ReactDatalist from 'react-datalist'
 
 class Owner extends Component {
-    state = {
-        letters: this.generateLetters(),
-        correntLetter: ""
+    constructor() {
+        super();
+        this.state = {
+            letters: this.generateLetters(),
+            correntLetter: ""
+        }
     }
     generateLetters() {
         let letterStatus = []
@@ -18,11 +21,9 @@ class Owner extends Component {
             correntLetter: e
         })
     }
-    resetLetter = () => {
-        this.setState({
-            correntLetter: ""
-        })
-    }
+
+    resetLetter = () => this.setState({ correntLetter: "" })
+
     sendUpdataData = () => this.props.sendUpdataData()
 
     render() {

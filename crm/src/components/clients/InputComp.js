@@ -8,6 +8,7 @@ class InputComp extends Component {
         this.props.filterByUserFild({ name: name, value: value });
     }
 
+    // Separate component for select and pagination - use functional components
     render() {
         let filters = this.props.filters
         return (

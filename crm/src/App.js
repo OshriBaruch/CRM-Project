@@ -13,6 +13,7 @@ class App extends Component {
     this.state = { corrntPage: "" }
   }
 
+  // No need for that function, use location.pathname instead
   getCorrntPage = (name) => this.setState({ corrntPage: name })
 
   render() {

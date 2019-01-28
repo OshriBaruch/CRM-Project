@@ -1,6 +1,22 @@
 const moment = require('moment')
 
 class recharts {
+    constructor(clients) {
+        this.clients = clients
+        this.topEmployees = {};
+        this.salesSince = {};
+        this.salesBy = {
+            country: {},
+            email: {},
+            month: {},
+            owner: {},
+        };
+        this.clientAcquisitions = {
+            corrntMonths: 0,
+            lastSixMonths: 0,
+            moreThanSixMonths: 0,
+        }
+    }
     sortObject(obj) {
         let footerArr = [];
         for (let prop in obj) {
@@ -25,58 +41,58 @@ class recharts {
         for (let i in arr) { arr[i].num = arr[i].key.split('-')[1] }
         return arr.sort((a, b) => { return a.num - b.num; });
     }
-    getRecharts(client) {
-        let topEmployees = {};
-        let salesBy = {
-            country: {},
-            email: {},
-            month: {},
-            owner: {},
-        };
-        let salesSince = {};
-        let clientAcquisitions = {
-            corrntMonths: 0,
-            lastSixMonths: 0,
-            moreThanSixMonths: 0,
+    generateTopEmployees(c) {
+        c.sold ? this.topEmployees[c.owner] ? this.topEmployees[c.owner]++ : this.topEmployees[c.owner] = 1 : null
+    }
+    generateSalesBy(c) {
+        c.sold ? this.salesBy.country[c.country] ? this.salesBy.country[c.country]++ : this.salesBy.country[c.country] = 1 : null
+        c.sold ? this.salesBy.owner[c.owner] ? this.salesBy.owner[c.owner]++ : this.salesBy.owner[c.owner] = 1 : null
+
+        c.emailType ? this.salesBy.email[c.emailType] ? this.salesBy.email[c.emailType]++ : this.salesBy.email[c.emailType] = 1 : null
+        this.salesBy.month[moment(c.firstContact).format("MMM")] ? this.salesBy.month[moment(c.firstContact).format("MMM")]++ : this.salesBy.month[moment(c.firstContact).format("MMM")] = 1
+    }
+    generateSalesSince(c) {
+        moment(c.firstContact).format("MMM YY") === moment("20180609T08").format("MMM YY") ? this.salesSince[moment(c.firstContact).format("MMM-D")] ?
+            this.salesSince[moment(c.firstContact).format("MMM-D")]++ : this.salesSince[moment(c.firstContact).format("MMM-D")] = 1 : null
+    }
+
+    // naming for conditions - instead of long ifs, create functions that represent that if
+    generateClientAcquisitions(c) {
+
+        const isLastMonth = () => moment(c.firstContact).format("MMM YY") === moment().format("MMM YY")
+
+        if (isLastMonth()) {
+            this.clientAcquisitions.corrntMonths++;
         }
-        client.map(c => {
-
-            c.sold ? topEmployees[c.owner] ? topEmployees[c.owner]++ : topEmployees[c.owner] = 1 : null
-
-            c.sold ? salesBy.country[c.country] ? salesBy.country[c.country]++ : salesBy.country[c.country] = 1 : null
-            c.emailType ? salesBy.email[c.emailType] ? salesBy.email[c.emailType]++ : salesBy.email[c.emailType] = 1 : null
-
-            salesBy.month[moment(c.firstContact).format("MMM")] ? salesBy.month[moment(c.firstContact).format("MMM")]++ : salesBy.month[moment(c.firstContact).format("MMM")] = 1
-
-            moment(c.firstContact).format("MMM YY") === moment("20180609T08").format("MMM YY") ? salesSince[moment(c.firstContact).format("MMM-D")] ?
-                salesSince[moment(c.firstContact).format("MMM-D")]++ : salesSince[moment(c.firstContact).format("MMM-D")] = 1 : null
-
-            if (moment(c.firstContact).format("MMM YY") === moment().format("MMM YY")) {
-                clientAcquisitions.corrntMonths++;
-            }
-            else if (moment(c.firstContact).format("l").split("/")[2] === moment().subtract(6, 'month').format("l").split("/")[2] &&
-                moment(c.firstContact).format("l").split("/")[0] > moment().subtract(6, 'month').format("l").split("/")[0]) {
-                clientAcquisitions.lastSixMonths++
-            }
-            else if (moment(c.firstContact).format("l").split("/")[2] > moment().subtract(6, 'month').format("l").split("/")[2] &&
-                moment(c.firstContact).format("l").split("/")[0] < moment().subtract(6, 'month').format("l").split("/")[0]) {
-                clientAcquisitions.lastSixMonths++
-            }
-            else if (moment(c.firstContact).format("l").split("/")[2] === moment().subtract(6, 'month').format("l").split("/")[2]) {
-                clientAcquisitions.moreThanSixMonths++
-            }
+        else if (moment(c.firstContact).format("l").split("/")[2] === moment().subtract(6, 'month').format("l").split("/")[2] &&
+            moment(c.firstContact).format("l").split("/")[0] > moment().subtract(6, 'month').format("l").split("/")[0]) {
+            this.clientAcquisitions.lastSixMonths++
+        }
+        else if (moment(c.firstContact).format("l").split("/")[2] > moment().subtract(6, 'month').format("l").split("/")[2] &&
+            moment(c.firstContact).format("l").split("/")[0] < moment().subtract(6, 'month').format("l").split("/")[0]) {
+            this.clientAcquisitions.lastSixMonths++
+        }
+        else if (moment(c.firstContact).format("l").split("/")[2] === moment().subtract(6, 'month').format("l").split("/")[2]) {
+            this.clientAcquisitions.moreThanSixMonths++
+        }
+    }
+    getRecharts() {
+        this.clients.map(client => {
+            this.generateTopEmployees(client)
+            this.generateSalesBy(client)
+            this.generateSalesSince(client)
+            this.generateClientAcquisitions(client)
         })
-
-        salesBy.country = this.sortObject(salesBy.country)
-        salesBy.email = this.sortObject(salesBy.email)
-        salesBy.owner = this.sortObject(topEmployees)
-        salesBy.month = this.sortMonth(this.sortObject(salesBy.month))
-
         return {
-            clientAcquisitions: this.sortObject(clientAcquisitions),
-            salesBy: salesBy,
-            salesSince: this.sortDays(this.sortObject(salesSince)),
-            topEmployees: this.sortObject(topEmployees).slice(0, 3)
+            clientAcquisitions: this.sortObject(this.clientAcquisitions),
+            salesBy: {
+                country: this.sortObject(this.salesBy.country),
+                email: this.sortObject(this.salesBy.email),
+                owner: this.sortObject(this.salesBy.owner),
+                month: this.sortObject(this.salesBy.month)
+            },
+            salesSince: this.sortDays(this.sortObject(this.salesSince)),
+            topEmployees: this.sortObject(this.topEmployees).slice(0, 3)
         }
     }
 }

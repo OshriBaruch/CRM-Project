@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 
 class Popup extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+    // this.state = { name: props.client.name || "" , surname: "", country: "", email: "" }
     this.state = { name: "", surname: "", country: "", email: "" }
   }
 

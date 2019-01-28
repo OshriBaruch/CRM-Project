@@ -3,6 +3,8 @@ import Badges from './analytics/Badges'
 import Recharts from './analytics/Recharts'
 import axios from 'axios'
 import './analytics/Analytics.css';
+import Loader from 'react-loaders';
+// import 'App.css/src/animations/pacman.scss'
 
 class Analytics extends Component {
   constructor() {
@@ -18,10 +20,11 @@ class Analytics extends Component {
     this.props.getCorrntPage("Analytics")
   }
   render() {
-    return <div id="analytics">
-      {this.state.badges ? <Badges badges={this.state.badges} /> : null}
-      {this.state.recharts ? <Recharts recharts={this.state.recharts} /> : null}
-    </div>
+    return this.state.badges && this.state.recharts ?
+      <div id="analytics"> <Badges badges={this.state.badges} /> 
+      <Recharts recharts={this.state.recharts} />
+      </div>
+      : < Loader />
   }
 }
 

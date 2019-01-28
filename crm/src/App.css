@@ -6,7 +6,7 @@
 #CRM-main>div {
   align-items: center;
   display: grid;
-  padding: 0.3%;
+  padding: 0.5% 2.5%
 }
 
 a {
@@ -44,4 +44,16 @@ a {
 
 #main-links > a:hover {
   background-color: #FFD447;
+}
+
+.loader-hidden {
+  display: none;
+}
+.loader-active {
+  display: block;
+}
+.loader-active{
+  display: grid;
+  justify-items: center;
+  align-items: center;
 }
