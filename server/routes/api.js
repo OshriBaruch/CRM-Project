@@ -4,6 +4,8 @@ const router = express.Router()
 const bodyParser = require('body-parser')
 let RechartsClass = require('../scripts/recharts')
 let BadgesClass = require('../scripts/badges')
+let uploadData = require('../scripts/uploadData')
+
 
 router.use(bodyParser.json())
 router.use(bodyParser.urlencoded({ extended: false }))
@@ -35,5 +37,8 @@ router.get('/analytics', (req, res) => {
         })
     })
 })
-
+router.get('/uploadData', (req, res) => {
+    uploadData()
+    res.end()
+})
 module.exports = router
