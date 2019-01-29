@@ -19,7 +19,7 @@ const uploadData = () => {
             country: d.country,
             surname: `${d.name.split(" ")[1]}-2`
         })
-        console.log('save')
+        console.log('save ',d.name)
         client.save()
     });
 }
