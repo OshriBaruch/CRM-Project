@@ -19,12 +19,12 @@ class Clients extends Component {
         }
     }
     async componentDidMount() {
-        const data = await axios.get('http://localhost:1996/allClient')
+        const data = await axios.get('/clients')
         this.setState({ data: data.data, filterData: data.data })
         this.props.getCorrntPage("Clients")
     }
     saveClientChangeToDB = async (obj) => {
-        let data = await axios.put('http://localhost:1996/client', obj)
+        let data = await axios.put('/client', obj)
         return data.data
     }
     filterByUserInput = () => {

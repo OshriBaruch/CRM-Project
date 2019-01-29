@@ -9,7 +9,7 @@ router.use(bodyParser.json())
 router.use(bodyParser.urlencoded({ extended: false }))
 
 // read about RESTful api
-router.get('/client', (req, res) => {
+router.get('/clients', (req, res) => {
     Clients.find({}, (err, result) => res.send(result))
 })
 

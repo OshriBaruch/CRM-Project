@@ -4,8 +4,13 @@
   "private": true,
   "dependencies": {
     "axios": "^0.18.0",
+    "body-parser": "^1.18.3",
+    "build": "^0.1.4",
+    "express": "^4.16.4",
     "loaders.css": "^0.1.2",
     "moment": "^2.23.0",
+    "mongoose": "^5.4.7",
+    "path": "^0.12.7",
     "react": "^16.7.0",
     "react-datalist": "^4.0.0",
     "react-dom": "^16.7.0",
@@ -15,9 +20,10 @@
     "recharts": "^1.4.2"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "node server.js",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "heroku-postbuild": "npm install --only=dev && npm install && npm run build",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
