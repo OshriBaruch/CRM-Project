@@ -4,7 +4,6 @@ const router = express.Router()
 const bodyParser = require('body-parser')
 let RechartsClass = require('../scripts/recharts')
 let BadgesClass = require('../scripts/badges')
-let uploadData = require('../scripts/uploadData')
 
 
 router.use(bodyParser.json())
@@ -38,7 +37,13 @@ router.get('/analytics', (req, res) => {
     })
 })
 router.get('/uploadData', (req, res) => {
-    uploadData()
+    let data = require('../react-crm-starter/data.json')
+    // data = data.slice(300, 350)
+    data.forEach(d => {
+        let client = new Clients(d)
+        console.log('save ', d.name)
+        client.save()
+    })
     res.end()
 })
 module.exports = router
