@@ -5,7 +5,7 @@ const path = require('path')
 const app = express()
 
 const mongoose = require('mongoose')
-mongoose.connect(process.env.CONNECTION_STRING || "mongodb://localhost/CRM-DB")
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/CRM-DB")
 
 app.use('/', api)
 app.use(bodyParser.urlencoded({ extended: false }))
