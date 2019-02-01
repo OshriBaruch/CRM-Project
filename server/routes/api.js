@@ -36,14 +36,14 @@ router.get('/analytics', (req, res) => {
         })
     })
 })
-router.get('/uploadData', (req, res) => {
-    let data = require('../react-crm-starter/data.json')
-    // data = data.slice(300, 350)
-    data.forEach(d => {
-        let client = new Clients(d)
-        console.log('save ', d.name)
-        client.save()
-    })
-    res.end()
-})
+// router.get('/uploadData', (req, res) => {
+//     let data = require('../react-crm-starter/data.json')
+//     // data = data.slice(300, 350)
+//     data.forEach(d => {
+//         let client = new Clients(d)
+//         console.log('save ', d.name)
+//         client.save()
+//     })
+//     res.end()
+// })
 module.exports = router
