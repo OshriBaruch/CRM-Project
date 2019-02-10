@@ -42,12 +42,38 @@ router.get('/analytics', (req, res) => {
 // upload all the Data to Heroku
 router.get('/uploadData', (req, res) => {
     let data = require('../crm-client-data/data.json')
-    data.forEach(d => {
+    data.slice(100, 150).forEach(d => {
         let client = new Clients({
             name: d.name.split(" ")[0],
             surname: d.name.split(" ")[1],
             email: d.email,
             firstContact: moment().format(),
+            emailType: d.emailType,
+            sold: d.sold,
+            owner: d.owner,
+            country: d.country
+        })
+        client.save()
+    })
+    data.slice(200, 400).forEach(d => {
+        let client = new Clients({
+            name: d.name.split(" ")[0] + 's',
+            surname: d.name.split(" ")[1] + 's',
+            email: d.email,
+            firstContact: moment().format(),
+            emailType: d.emailType,
+            sold: d.sold,
+            owner: d.owner,
+            country: d.country
+        })
+        client.save()
+    })
+    data.forEach(d => {
+        let client = new Clients({
+            name: d.name.split(" ")[0],
+            surname: d.name.split(" ")[1],
+            email: d.email,
+            firstContact: d.firstContact,
             emailType: d.emailType,
             sold: d.sold,
             owner: d.owner,
