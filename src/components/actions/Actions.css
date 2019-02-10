@@ -3,10 +3,11 @@
   height: 93vh;
 }
 .updata-client{
-  width: 60;
+  width: 60%;
   height: 35%;
   padding: 3%;
 }
+
 .updata-client-box{
   display: grid;
   grid-template-rows: 1fr 1fr 1fr 1fr;
