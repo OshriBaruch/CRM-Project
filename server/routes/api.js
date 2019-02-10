@@ -2,14 +2,16 @@ const express = require('express')
 const Clients = require('../model/Clients')
 const router = express.Router()
 const bodyParser = require('body-parser')
-let RechartsClass = require('../scripts/recharts')
-let BadgesClass = require('../scripts/badges')
+const moment = require('moment')
+
+//Upload files to badges and charts
+const RechartsClass = require('../scripts/recharts')
+const BadgesClass = require('../scripts/badges')
 
 
 router.use(bodyParser.json())
 router.use(bodyParser.urlencoded({ extended: false }))
 
-// read about RESTful api
 router.get('/clients', (req, res) => {
     Clients.find({}, (err, result) => res.send(result))
 })
@@ -36,14 +38,23 @@ router.get('/analytics', (req, res) => {
         })
     })
 })
-// router.get('/uploadData', (req, res) => {
-//     let data = require('../react-crm-starter/data.json')
-//     // data = data.slice(300, 350)
-//     data.forEach(d => {
-//         let client = new Clients(d)
-//         console.log('save ', d.name)
-//         client.save()
-//     })
-//     res.end()
-// })
+
+// upload all the Data to Heroku
+router.get('/uploadData', (req, res) => {
+    let data = require('../crm-client-data/data.json')
+    data.forEach(d => {
+        let client = new Clients({
+            name: d.name.split(" ")[0],
+            surname: d.name.split(" ")[1],
+            email: d.email,
+            firstContact: moment().format(),
+            emailType: d.emailType,
+            sold: d.sold,
+            owner: d.owner,
+            country: d.country
+        })
+        client.save()
+    })
+    res.end()
+})
 module.exports = router
