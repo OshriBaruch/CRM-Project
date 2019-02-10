@@ -1,6 +1,7 @@
 const moment = require('moment')
 
 class recharts {
+
     constructor(clients) {
         this.clients = clients
         this.topEmployees = {};
@@ -17,6 +18,7 @@ class recharts {
             moreThanSixMonths: 0,
         }
     }
+
     sortObject(obj) {
         let footerArr = [];
         for (let prop in obj) {
@@ -29,6 +31,7 @@ class recharts {
         }
         return footerArr.sort((a, b) => { return b.value - a.value; });
     }
+
     sortMonth(arr) {
         let correntMonth;
         for (let i in arr) {
@@ -37,13 +40,16 @@ class recharts {
         }
         return arr.sort((a, b) => { return a.num - b.num; });
     }
+
     sortDays(arr) {
         for (let i in arr) { arr[i].num = arr[i].key.split('-')[1] }
         return arr.sort((a, b) => { return a.num - b.num; });
     }
+    
     generateTopEmployees(c) {
         c.sold ? this.topEmployees[c.owner] ? this.topEmployees[c.owner]++ : this.topEmployees[c.owner] = 1 : null
     }
+
     generateSalesBy(c) {
         c.sold ? this.salesBy.country[c.country] ? this.salesBy.country[c.country]++ : this.salesBy.country[c.country] = 1 : null
 
@@ -54,6 +60,7 @@ class recharts {
         this.salesBy.month[moment(c.firstContact).format("MMM")] ?
             this.salesBy.month[moment(c.firstContact).format("MMM")]++ : this.salesBy.month[moment(c.firstContact).format("MMM")] = 1
     }
+
     generateSalesSince(c) {
         moment(c.firstContact).format("MMM YY") === moment("20180609T08").format("MMM YY") ? this.salesSince[moment(c.firstContact).format("MMM-D")] ?
             this.salesSince[moment(c.firstContact).format("MMM-D")]++ : this.salesSince[moment(c.firstContact).format("MMM-D")] = 1 : null
@@ -86,12 +93,13 @@ class recharts {
                 country: this.sortObject(this.salesBy.country),
                 email: this.sortObject(this.salesBy.email),
                 owner: this.sortObject(this.salesBy.owner),
-                month: this.sortObject(this.salesBy.month)
+                month: this.sortMonth(this.sortObject(this.salesBy.month))
             },
             salesSince: this.sortDays(this.sortObject(this.salesSince)),
             topEmployees: this.sortObject(this.topEmployees).slice(0, 3)
         }
     }
+    
 }
 
 module.exports = recharts
