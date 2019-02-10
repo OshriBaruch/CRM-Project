@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import axios from 'axios'
-import Row from './clients/Row'
+import TableRows from './clients/TableRows'
 import Popup from './clients/popup'
-import TableHeader from './clients/TableHeader'
-import InputComp from './clients/InputComp'
+import TableRowHeader from './clients/TableRowHeader'
+import ClientsView from './clients/ClientsView'
 import './clients/Clients.css';
 
 class Clients extends Component {
-    // remove filterData from state. remember that the state should hold the minimal necessary data.
+
     constructor() {
         super();
         this.state = {
@@ -18,15 +18,18 @@ class Clients extends Component {
             filterClients: { input: "", fild: "name" },
         }
     }
+
     async componentDidMount() {
         const data = await axios.get('/clients')
         this.setState({ data: data.data, filterData: data.data })
         this.props.getCorrntPage("Clients")
     }
+
     saveClientChangeToDB = async (obj) => {
         let data = await axios.put('/client', obj)
         return data.data
     }
+
     filterByUserInput = () => {
         let filterClients = this.state.filterClients
         let filterData = this.state.data
@@ -40,6 +43,7 @@ class Clients extends Component {
         this.setState({ filterData: filterData, correntPage: 0 });
         // return filterData
     }
+
     filterByUserFild = (change) => {
         let filterClients = this.state.filterClients
         filterClients[change.name] = change.value
@@ -47,63 +51,69 @@ class Clients extends Component {
         this.filterByUserInput()
     }
 
-    // consider creating one function for both - pagination 
     moveToNextPage = () => {
         let corrent = this.state.correntPage
         let dataLangth = this.state.filterData.length
         if ((corrent * 20) + 20 <= dataLangth) { corrent++ }
         this.setState({ correntPage: corrent })
     }
+
     moveToPreviousPage = () => {
         let corrent = this.state.correntPage
         if ((corrent * 20) - 20 >= 0) { corrent-- }
         this.setState({ correntPage: corrent })
     }
-    // No need for both obj and index, pass only index/id
-    setClientChange = (obj, index) => {
-        obj.index = index
-        this.setState({ changeContact: obj })
+
+    setClientChange = (index) => {
+        this.data[index].index = index
+        this.setState({ changeContact: this.data[index] })
     }
+
     savePopupChange = (obj) => {
         let changeContact = this.state.changeContact
-        // check if necessary (maybe you should put null here)
-        // obj = updateObjectValues(obj);
-        obj.name ? changeContact.name = obj.name : obj.name = changeContact.name
-        obj.surname ? changeContact.surname = obj.surname : obj.surname = changeContact.surname
-        obj.email ? changeContact.email = obj.email : obj.email = changeContact.email
-        obj.country ? changeContact.country = obj.country : obj.country = changeContact.country
+
+        if (obj.name) changeContact.name = obj.name
+        if (obj.surname) changeContact.surname = obj.surname
+        if (obj.email) changeContact.email = obj.email
+        if (obj.country) changeContact.country = obj.country
+
         if (this.saveClientChangeToDB(changeContact)) {
-            let data = this.state.data
-            data[obj.index] = obj
+            let data = [...this.state.data]
+            data[changeContact.index] = changeContact
             this.setState({ changeContact: null, data: data })
         }
-        else {
-            alert("Not Found Data")
-        }
     }
+
     closePopUp = () => {
         this.setState({ changeContact: null })
     }
+
     render() {
         let clients = this.state.filterData
-        // let filteredClients = this.filterData()
         clients = clients.slice(this.state.correntPage * 20, (this.state.correntPage + 1) * 20)
         return (
             <div id="CRM-main">
-                <InputComp filterByUserFild={this.filterByUserFild}
+                <ClientsView filterByUserFild={this.filterByUserFild}
                     moveNextPage={this.moveToNextPage}
                     movePreviousPage={this.moveToPreviousPage}
                     correntPage={this.state.correntPage}
                     dataLength={this.state.filterData.length / 20}
                     filters={this.state.filterClients} />
                 <div id="clients-table">
-                    <TableHeader />
+                    <TableRowHeader />
                     {clients.map((c, index) =>
-                        <Row key={index} index={index} setClientChange={this.setClientChange} client={c} />
+                        <TableRows
+                            key={index}
+                            index={index}
+                            setClientChange={this.setClientChange}
+                            client={c} />
                     )}
                 </div>
                 {this.state.changeContact &&
-                    <Popup closePopUp={this.closePopUp} client={this.state.changeContact} savePopupChange={this.savePopupChange} />
+                    <Popup closePopUp={this.closePopUp}
+                        client={this.state.changeContact}
+                        savePopupChange={this.savePopupChange}
+                    />
                 }
             </div>
         )

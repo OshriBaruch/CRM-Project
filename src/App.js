@@ -13,7 +13,6 @@ class App extends Component {
     this.state = { corrntPage: "" }
   }
 
-  // No need for that function, use location.pathname instead
   getCorrntPage = (name) => this.setState({ corrntPage: name })
 
   render() {
@@ -21,9 +20,9 @@ class App extends Component {
       <Router>
         <div className="App">
           <Navbar corrntPage={this.state.corrntPage}/>
-          <Route path="/clients" exact render={(match) => <Clients getCorrntPage={this.getCorrntPage} match={match} />} />
-          <Route path="/actions" exact render={(match) => <Actions getCorrntPage={this.getCorrntPage} match={match} />} />
-          <Route path="/analytics" exact render={(match) => <Analytics getCorrntPage={this.getCorrntPage} match={match} />} />
+          <Route path="/clients" exact render={() => <Clients getCorrntPage={this.getCorrntPage} />} />
+          <Route path="/actions" exact render={() => <Actions getCorrntPage={this.getCorrntPage} />} />
+          <Route path="/analytics" exact render={() => <Analytics getCorrntPage={this.getCorrntPage} />} />
         </div>
       </Router>
     );

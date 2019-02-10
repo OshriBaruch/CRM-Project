@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import moment from 'moment'
 
 class Row extends Component {
-    setClientChange = () => this.props.setClientChange(this.props.client,this.props.index)
+    setClientChange = () => this.props.setClientChange(this.props.index)
     render() {
         let client = this.props.client
         return (

@@ -60,7 +60,7 @@ class Acquisitions extends Component {
     }
     render() {
         let clientAcquisitions = this.props.clientAcquisitions
-        let colors = ["#8884d8", "#82ca9d", "#FFD447"]//#FFD447
+        let colors = ["#8884d8", "#82ca9d", "#FFD447"]
         return (
             <div className="Acquisitions">
                 <div className="Acquisitions-title">Acquisitions</div>
@@ -84,4 +84,4 @@ class Acquisitions extends Component {
         );
     }
 }
-export default Acquisitions//key={clientAcquisitions[i]}
+export default Acquisitions

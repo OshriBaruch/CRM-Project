@@ -2,13 +2,12 @@ import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 class Navbar extends Component {
     getCorrntColor = (val, corrntPage) => {
-        
         let obj1 = { background: "#FFD447" }
         let obj2 = { background: "#423E37" }
-
-        if (corrntPage === val) { return obj1 }
-        else { return obj2 }
+        if (corrntPage === val) return obj1
+        else return obj2
     }
+
     render() {
         let corrntPage = this.props.corrntPage
         return (

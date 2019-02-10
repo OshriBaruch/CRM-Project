@@ -2,7 +2,6 @@ const express = require('express')
 const Clients = require('../model/Clients')
 const router = express.Router()
 const bodyParser = require('body-parser')
-const moment = require('moment')
 
 //Upload files to badges and charts
 const RechartsClass = require('../scripts/recharts')

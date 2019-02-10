@@ -11,7 +11,6 @@ class Actions extends Component {
   }
   async componentDidMount() {
     const data = await axios.get('/clients')
-		console.log('TCL: Actions -> componentDidMount -> data', data)
     this.setState({ data: data.data })
     this.props.getCorrntPage("Actions")
   }
@@ -25,9 +24,6 @@ class Actions extends Component {
       data[obj.index] = obj
       this.setState({ data: data })
       alert("The information is modified and saved in db")
-    }
-    else {
-      alert("Not Found Data")
     }
   }
   saveNewClient = async (newClient) => {

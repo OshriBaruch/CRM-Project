@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class InputComp extends Component {
+class ClientsView extends Component {
 
     handleInputChange = (e) => {
         const value = e.target.value;
@@ -8,7 +8,6 @@ class InputComp extends Component {
         this.props.filterByUserFild({ name: name, value: value });
     }
 
-    // Separate component for select and pagination - use functional components
     render() {
         let filters = this.props.filters
         return (
@@ -34,4 +33,4 @@ class InputComp extends Component {
     }
 }
 
-export default InputComp
+export default ClientsView

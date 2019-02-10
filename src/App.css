@@ -1,12 +1,5 @@
-#CRM-main {
-  justify-self: center;
-  align-self: center;
-  display: grid;
-}
-#CRM-main>div {
-  align-items: center;
-  display: grid;
-  padding: 0.5% 2.5%
+body {
+  margin: 0;
 }
 
 a {
@@ -15,12 +8,7 @@ a {
   padding-left: 5%;
   padding-right: 5%;
 }
-.App{
-  width: 100vw;
-  height: 100vh;
-}
 
-/* Clients Page */
 #navbar {
   height: 7vh;
   display: grid;

@@ -1,5 +1,6 @@
 #analytics{
     padding: 1%;
+    height: 90vh;
     display: grid;
     grid-template-rows: 1fr 3fr;
 }
@@ -18,9 +19,8 @@
     justify-items: center;
     text-align: center;
 }
-.badges-line h2, .badges-line p {
-    margin: 0;
-}
+.badges-line h2, .badges-line p {margin: 0}
+
 .badges-box>i{
     background-color: #FFD447;
     padding: 20px; 
@@ -33,44 +33,31 @@
 .recharts-analytics{
     padding: 1%;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
+    grid-template-areas: "te sr sr" "ss ss ac";
     grid-gap: 3%;
+    text-decoration: underline;
 }
 .topEmployees{
-    grid-column: 1;
-    grid-row: 1;
+    grid-area: te;
     grid-gap: 3%;
     display: grid;
     grid-template-rows: 1fr 9fr;
-    justify-items: center;
-    align-items: center;
 }
 .salesBy-rechart{
-    grid-column: 2 / 4;
-    grid-row: 1;
-    grid-gap: 5%;
+    grid-area: sr;
+    grid-gap: 3%;
     display: grid;
     grid-template-rows: 1fr 9fr;
-}
-.salesBy-select{
-    padding-left: 3%;
-    justify-self: start;
-    align-self: center;
 }
 .salesSince{
-    grid-column: 1 / 3;
-    grid-row: 2;
-    display: grid;
+    grid-area: ss;
     grid-gap: 3%;
-    grid-template-rows: 1fr 9fr;    
+    display: grid;
+    grid-template-rows: 1fr 9fr;
 }
 .Acquisitions{
-    grid-column: 3;
-    grid-row: 2;
-    display: grid;
+    grid-area: ac;
     grid-gap: 3%;
+    display: grid;
     grid-template-rows: 1fr 9fr;
-    justify-items: center;
-    align-items: center;
 }

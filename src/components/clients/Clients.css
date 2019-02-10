@@ -1,3 +1,14 @@
+#CRM-main {
+  justify-self: center;
+  align-self: center;
+  display: grid;
+}
+#CRM-main>div {
+  align-items: center;
+  display: grid;
+  padding: 0.5% 2.5%
+}
+
 .rows-header{
   background-color: #FFD447;
   box-shadow: 0.4vw 0.4vh rgb(213, 211, 206);
