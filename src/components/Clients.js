@@ -45,7 +45,11 @@ class Clients extends Component {
 
     filterByUserFild = (change) => {
         let filterClients = this.state.filterClients
-        filterClients[change.name] = change.value
+        if(change.name == "input"){
+            filterClients[change.name] = change.value
+        } else {
+            filterClients.fild = change.value
+        }
         this.setState({ filterClients: filterClients });
         this.filterByUserInput()
     }
