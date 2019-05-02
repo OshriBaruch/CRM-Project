@@ -3,7 +3,7 @@
   height: 93vh;
 }
 .updata-client{
-  width: 35vw;
+  width: 40vw;
   height: 35%;
   padding: 3%;
 }
@@ -11,17 +11,22 @@
 .updata-client-box{
   display: grid;
   grid-template-rows: 1fr 1fr 1fr 1fr;
-  align-items: top;
-  justify-content: start;
+  align-items: center;
+  justify-items: center;
+}
+.updata-client-box:first-child { 
+  justify-items: start;
 }
 .client-actions{
   display: grid;
-  grid-template-columns: 3fr 3fr 1fr;
-  grid-column-gap: 2vw;
+  grid-template-columns: 1fr 1fr 1fr;
   width: 100%;
   align-items: center;
+  justify-items: center;
 }
+
 .client-actions>span{
+  justify-self: start;
   display: inline-block;
   color: #423E37 !important;
   padding: 1%;

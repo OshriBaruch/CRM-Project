@@ -21,7 +21,7 @@ class Owner extends Component {
 
     render() {
         return (
-            <div className="client-actions"> Transfer ownership To :
+            <div className="client-actions"><span>Transfer ownership To :</span>
                 {this.state.correntOwner ?
                     <span><span>{this.state.correntOwner}</span><button onClick={this.resetOwner}>back</button></span> :
                     <ReactDatalist list="fruit"

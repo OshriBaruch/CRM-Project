@@ -11,7 +11,7 @@ class Analytics extends Component {
     this.state = { badges: null, recharts: null }
   }
   async componentDidMount() {
-    const analytics = await axios.get('/analytics')
+    const analytics = await axios.get('/get_analytics')
     this.setState({
       badges: analytics.data.badges,
       recharts: analytics.data.recharts

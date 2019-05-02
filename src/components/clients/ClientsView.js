@@ -14,7 +14,7 @@ class ClientsView extends Component {
             <div id="client-search">
                 <div className="filter-client">
                     <input type="text" value={filters.input} name="input" onChange={this.handleInputChange} />
-                    <select value={filters.fild} name={"fild"} onChange={this.handleInputChange}>
+                    <select value={filters.fild}  m onChange={this.handleInputChange}>
                         <option value="name">name</option>
                         <option value="surname">sername</option>
                         <option value="emailType">email</option>

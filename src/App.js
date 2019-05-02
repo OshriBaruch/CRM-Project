@@ -20,9 +20,9 @@ class App extends Component {
       <Router>
         <div className="App">
           <Navbar corrntPage={this.state.corrntPage}/>
-          <Route path="/clients" exact render={() => <Clients getCorrntPage={this.getCorrntPage} />} />
-          <Route path="/actions" exact render={() => <Actions getCorrntPage={this.getCorrntPage} />} />
-          <Route path="/analytics" exact render={() => <Analytics getCorrntPage={this.getCorrntPage} />} />
+          <Route path="/clients" render={() => <Clients getCorrntPage={this.getCorrntPage} />} />
+          <Route path="/actions" render={() => <Actions getCorrntPage={this.getCorrntPage} />} />
+          <Route path="/analytics" render={() => <Analytics getCorrntPage={this.getCorrntPage} />} />
         </div>
       </Router>
     );

@@ -20,13 +20,13 @@ class Clients extends Component {
     }
 
     async componentDidMount() {
-        const data = await axios.get('/clients')
+        const data = await axios.get('/all_clients')
         this.setState({ data: data.data, filterData: data.data })
         this.props.getCorrntPage("Clients")
     }
 
     saveClientChangeToDB = async (obj) => {
-        let data = await axios.put('/client', obj)
+        let data = await axios.put('/update_client', obj)
         return data.data
     }
 
@@ -41,7 +41,6 @@ class Clients extends Component {
             return fild.includes(input)
         })
         this.setState({ filterData: filterData, correntPage: 0 });
-        // return filterData
     }
 
     filterByUserFild = (change) => {
@@ -65,8 +64,7 @@ class Clients extends Component {
     }
 
     setClientChange = (index) => {
-        this.data[index].index = index
-        this.setState({ changeContact: this.data[index] })
+        this.setState({ changeContact: this.state.filterData[index] })
     }
 
     savePopupChange = (obj) => {

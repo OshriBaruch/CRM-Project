@@ -28,7 +28,7 @@ class Owner extends Component {
 
     render() {
         return (
-            <div className="client-actions"> Send Email :
+            <div className="client-actions"><span>Send Email :</span>
                 {this.state.correntLetter ?
                     <span><span>{this.state.correntLetter}</span><button onClick={this.resetLetter}>back</button></span> :
                     <ReactDatalist list="email-types"

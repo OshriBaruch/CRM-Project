@@ -10,6 +10,7 @@
     "loaders.css": "^0.1.2",
     "moment": "^2.23.0",
     "mongoose": "^5.4.7",
+    "nodemon": "^1.19.0",
     "path": "^0.12.7",
     "react": "^16.7.0",
     "react-datalist": "^4.0.0",
